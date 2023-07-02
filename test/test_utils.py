@@ -1,4 +1,4 @@
-from app.utils import executed_operations, last_five_operations, sort_time_operation, convert_date, convert_from, \
+from Operation_Bank.app.utils import executed_operations, last_five_operations, sort_time_operation, convert_date, convert_from, \
     convert_to, display_information
 
 
@@ -7,6 +7,11 @@ def test_get_operations(list_get_operations):
 
 
 def test_executed_operations():
+    """
+    Тест для проверки функции, которая
+    оставляет толькосписок словарей с
+    state == EXECUTED
+    """
     test_ex = executed_operations()
     assert isinstance(test_ex, list)
     for i in test_ex:

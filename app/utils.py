@@ -10,7 +10,7 @@ def get_operations(path):
         return json.load(file)
 
 
-def executed_operations():
+def executed_operations(all_operations):
     data_list = []
     for txt in get_operations(OPEARTION_PATH):
         if txt.get('state') == 'EXECUTED':
@@ -18,13 +18,13 @@ def executed_operations():
     return data_list
 
 
-def last_five_operations():
-    work_list = executed_operations()[-5:]
+def last_five_operations(all_operations):
+    work_list = executed_operations(all_operations)[-5:]
     return work_list
 
 
-def sort_time_operation():
-    sort_work_list = last_five_operations()
+def sort_time_operation(get_operations):
+    sort_work_list = last_five_operations(get_operations)
     sort_work_list.sort(key=itemgetter('date'), reverse=True)
     return sort_work_list
 
@@ -54,9 +54,9 @@ def convert_to(data: dict):
     return information_card
 
 
-def display_information():
+def display_information(get_operations):
     list_new = []
-    for data in sort_time_operation():
+    for data in sort_time_operation(get_operations):
         str_description = data['description']
         str_amount = data['operationAmount']['amount']
         str_currency = data['operationAmount']['currency']['name']
